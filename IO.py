@@ -1,15 +1,15 @@
 import os.path
 from random import *
-from CONSTANT import *
+import CONSTANT
 
-seed(random_seed)
+seed(CONSTANT.random_seed)
 
 
-def Import_data(H, data=2, n=100, Rs=40, Rc=80, Qmax=10, change=1):
+def Import_data(H, data='sonla', n=100, Rs=40, Rc=80, Qmax=10, change=1):
     '''
 
     @param H: size of the AoI (HxH)
-    @param data: index of the dataset (start from 1)
+    @param data: dataset name
     @param n: Number of target (start)
     @param Rs: Sensing radius (start)
     @param Rc: Communication radius (start)
@@ -19,15 +19,14 @@ def Import_data(H, data=2, n=100, Rs=40, Rc=80, Qmax=10, change=1):
     '''
     global n_default , Rs_default, Rc_default , Qmax_default
 
-    file = ["bacgiang", "hanoi", "lamdong", "sonla", "thaibinh"]
-    Dataset = [[[n + n_step * i, Rs, Rc, Qmax] for i in range(dataset_num)],   # change n
-               [[n, Rs + Rs_step * i, Rc, Qmax] for i in range(dataset_num)],  # change Rs
-               [[n, Rs, Rc, Qmax + Qmax_step * i] for i in range(dataset_num)],# change Qmax
-               [[n, Rs, Rc + Rc_step * i, Qmax] for i in range(dataset_num)]]  # change Rc
+    # file = ["bacgiang", "hanoi", "lamdong", "sonla", "thaibinh"]
+    Dataset = [[[n + CONSTANT.n_step * i, Rs, Rc, Qmax] for i in range(CONSTANT.dataset_num)],   # change n
+               [[n, Rs + CONSTANT.Rs_step * i, Rc, Qmax] for i in range(CONSTANT.dataset_num)],  # change Rs
+               [[n, Rs, Rc, Qmax + CONSTANT.Qmax_step * i] for i in range(CONSTANT.dataset_num)],# change Qmax
+               [[n, Rs, Rc + CONSTANT.Rc_step * i, Qmax] for i in range(CONSTANT.dataset_num)]]  # change Rc
 
-    file = file[data - 1]
 
-    with open(f"Data/{file}.asc", "r") as f:
+    with open(f"Data/{data}.asc", "r") as f:
         f.readline()
         f.readline()
         xllcorner = float(f.readline()[9:-1])
@@ -48,12 +47,12 @@ def Import_data(H, data=2, n=100, Rs=40, Rc=80, Qmax=10, change=1):
 
     Dataset = Dataset[change - 1]
 
-    Targets, Qs = place_random(Dataset, data_asc, change)
+    Targets, Qs = place_random(H, Dataset, data_asc, change)
 
-    return Dataset, Targets, Qs, file, change - 1, data_asc
+    return Dataset, Targets, Qs, data, change - 1, data_asc
 
 
-def place_random(Dataset, data_asc, change):
+def place_random(H, Dataset, data_asc, change):
     if change == 1:
         Targets = []
         Qs = []
@@ -120,17 +119,17 @@ def exportDataCov(average_S, average_runtimeCov, Dataset, file, name, H, change)
     with open(f"Result/{name}/{file}/change {changes[change]} n{n} Rs{Rs} Q{Q} H{H} data.txt", "w") as f:
         if change == 0:
             f.write("changing n\n")
-            for i in range(dataset_num):
+            for i in range(CONSTANT.dataset_num):
                 string = f'n = {Dataset[i][0]}, s1-1-{i + 1}, {average_S["n"][i]}, {average_runtimeCov["n"][i]}\n'
                 f.write(string)
         if change == 1:
             f.write("changing Rs\n")
-            for i in range(dataset_num):
+            for i in range(CONSTANT.dataset_num):
                 string = f'Rs = {Dataset[i][1]}, s1-2-{i + 1}, {average_S["Rs"][i]}, {average_runtimeCov["Rs"][i]}\n'
                 f.write(string)
         if change == 2:
             f.write("changing Qmax\n")
-            for i in range(dataset_num):
+            for i in range(CONSTANT.dataset_num):
                 string = f'Qmax = {Dataset[i][3]}, s1-3-{i + 1}, {average_S["Q"][i]}, {average_runtimeCov["Q"][i]}\n'
                 f.write(string)
 
@@ -147,17 +146,17 @@ def exportDataCon(average_Rn, average_runtimeCon, Dataset, file, name, H, change
     with open(f"Result/{name}/{file}/change {changes[change]} n{n} Rc{Rc} Q{Q} H{H} data.txt", "a") as f:
         if change == 0:
             f.write("changing n\n")
-            for i in range(dataset_num):
+            for i in range(CONSTANT.dataset_num):
                 string = f'n = {Dataset[i][0]}, s2-1-{i + 1}, {average_Rn["n"][i]}, {average_runtimeCon["n"][i]}\n'
                 f.write(string)
         if change == 3:
             f.write("changing Rc\n")
-            for i in range(dataset_num):
+            for i in range(CONSTANT.dataset_num):
                 string = f'Rc = {Dataset[i][2]}, s2-2-{i + 1}, {average_Rn["Rc"][i]}, {average_runtimeCon["Rc"][i]}\n'
                 f.write(string)
         if change == 2:
             f.write("changing Qmax\n")
-            for i in range(dataset_num):
+            for i in range(CONSTANT.dataset_num):
                 string = f'Qmax = {Dataset[i][3]}, s2-3-{i + 1}, {average_Rn["Q"][i]}, {average_runtimeCon["Q"][i]}\n'
                 f.write(string)
 
@@ -174,21 +173,21 @@ def exportDataBoth(average_S, average_Rn, average_runtime, Dataset, file, name, 
     with open(f"Result/{name}/{file}/change {changes[change]} n{n} Rs{Rs} Rc{Rc} Q{Q} H{H} data.txt", "a") as f:
         if change == 0:
             f.write("changing n\n")
-            for i in range(dataset_num):
+            for i in range(CONSTANT.dataset_num):
                 string = f'n = {Dataset[i][0]}, s3-1-{i + 1}, {average_S["n"][i]}, {average_Rn["n"][i]}, {average_runtime["n"][i]}\n'
                 f.write(string)
         if change == 1:
             f.write("changing Rs\n")
-            for i in range(dataset_num):
+            for i in range(CONSTANT.dataset_num):
                 string = f'Rs = {Dataset[i][1]}, s3-2-{i + 1}, {average_S["Rs"][i]}, {average_Rn["Rs"][i]}, {average_runtime["Rs"][i]}\n'
                 f.write(string)
         if change == 3:
             f.write("changing Rc\n")
-            for i in range(dataset_num):
+            for i in range(CONSTANT.dataset_num):
                 string = f'Rc = {Dataset[i][2]}, s3-3-{i + 1}, {average_S["Rc"][i]}, {average_Rn["Rc"][i]}, {average_runtime["Rc"][i]}\n'
                 f.write(string)
         if change == 2:
             f.write("changing Qmax\n")
-            for i in range(dataset_num):
+            for i in range(CONSTANT.dataset_num):
                 string = f'Qmax = {Dataset[i][3]}, s3-4-{i + 1}, {average_S["Q"][i]}, {average_Rn["Q"][i]}, {average_runtime["Q"][i]}\n'
                 f.write(string)

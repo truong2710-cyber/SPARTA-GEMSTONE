@@ -1,3 +1,4 @@
+global data_num, dataset_num, H, n_step, Rs_step, Rc_step, Qmax_step, random_seed
 data_num = 20     # Run how many times per 1 Dataset
 dataset_num = 1   # Dataset
 H = 2000	      # Region

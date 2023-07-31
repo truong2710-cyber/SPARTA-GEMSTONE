@@ -4,7 +4,7 @@ from CMFA import *
 from IO import *
 from SPARTA import SPARTA
 
-seed(random_seed)
+seed(CONSTANT.random_seed)
 
 
 class Vertex(object):

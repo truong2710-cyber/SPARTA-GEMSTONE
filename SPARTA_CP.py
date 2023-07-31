@@ -8,7 +8,7 @@ from CONSTANT import *
 from SPARTA import *
 from IO import *
 
-seed(random_seed)
+seed(CONSTANT.random_seed)
 
 
 class Vertex(object):

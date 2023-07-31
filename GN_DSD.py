@@ -3,7 +3,7 @@ import timeit
 
 from IO import *
 
-seed(random_seed)
+seed(CONSTANT.random_seed)
 
 
 class Target:

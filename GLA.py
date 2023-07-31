@@ -5,7 +5,7 @@ from numpy.linalg import norm
 from ortools.linear_solver import pywraplp
 from IO import *
 
-seed(random_seed)
+seed(CONSTANT.random_seed)
 
 
 def random_point_in_sphere(center, radius):
