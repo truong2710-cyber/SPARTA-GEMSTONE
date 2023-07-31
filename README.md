@@ -20,7 +20,7 @@ conda create -n sparta_gemstone
 conda deactivate && conda activate sparta_gemstone
 ```
 In the environment, run the following command to install necessary packages:
-```
+```console
 pip install -r requirements.txt
 ```
 ## 3. Run experiments
@@ -40,7 +40,7 @@ We provide some arguments for the experiments as follows:
 - `--p2`: the algorithm to use in phase II, default = `gemstone`. There are two options `['gemstone', 'cmfa']`.
 
 Run file `main.py` to execute the experiment. For example:
-```
+```console
 python main.py --N 400 --qm 10 --rs 40 --rc 80 --d sonla --w 2000 --b 0 0 --ch n --s 15 --ns 6 --nr 20 --p1 sparta p2 gemstone
 ```
 The result is saved in the folder `Result/dataset_name/algo_name` in a `.txt` file.
