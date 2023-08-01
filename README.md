@@ -13,7 +13,7 @@ Truong Vu, *SPARTA-GEMSTONE: A two-phase approach for efficient node placement i
 
 Now please clone the repository and switch to the root directory:
 ```console
-git clone git@github.com:truong2710-cyber/SPARTA-GEMSTONE.git /your/path/sparta_gemstone
+git clone https://github.com/truong2710-cyber/SPARTA-GEMSTONE.git /your/path/sparta_gemstone
 cd /your/path/sparta_gemstone
 ```
 
