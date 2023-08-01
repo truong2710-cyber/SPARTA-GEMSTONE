@@ -1,5 +1,0 @@
-timeit
-numpy
-ortools
-random
-matplotlib

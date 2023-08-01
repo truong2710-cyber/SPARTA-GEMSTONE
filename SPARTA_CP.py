@@ -1,8 +1,6 @@
 from random import *
 from math import *
 import numpy as np
-import timeit
-import collections
 
 from CONSTANT import *
 from SPARTA import *

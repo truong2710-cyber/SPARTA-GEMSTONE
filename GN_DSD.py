@@ -1,6 +1,4 @@
 from math import *
-import timeit
-
 from IO import *
 
 seed(CONSTANT.random_seed)
