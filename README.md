@@ -1,4 +1,4 @@
-# SPARTA-GEMSTONE: A two-phase approach for efficient node placement in 3D wireless sensor networks under Q-Coverage and Q-Connectivity constraints
+# SPARTA-GEMSTONE: A two-phase approach for efficient node placement in 3D wireless sensor networks under $Q$-Coverage and $Q$-Connectivity constraints
 
 This repository is the official implementation of the graduation thesis:
 
