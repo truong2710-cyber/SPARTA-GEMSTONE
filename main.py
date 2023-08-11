@@ -122,13 +122,13 @@ def main(args):
             endtime = timeit.default_timer()
 
             average_runtime[change[factor_idx]][j] += (endtime - starttime)
-
+            plot(data_asc, T, S, Rn, base, conn, file_name=f'./result_{args.algo_p1+"_"+args.algo_p2}.pdf')
+            
         average_s[change[factor_idx]][j] = round(average_s[change[factor_idx]][j] / CONSTANT.data_num)
         average_rn[change[factor_idx]][j] = round(average_rn[change[factor_idx]][j] / CONSTANT.data_num)
         average_runtime[change[factor_idx]][j] = round(average_runtime[change[factor_idx]][j] / CONSTANT.data_num, 5)
         
     exportDataBoth(average_s, average_rn, average_runtime, Dataset, file, args.algo_p1+"_"+args.algo_p2, args.width, factor_idx)
-        # plot(data_asc, T, S, Rn, base, conn)
 
 
 if __name__ == "__main__":

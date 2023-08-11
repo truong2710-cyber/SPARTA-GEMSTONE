@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def plot(data_asc, targets, sensors, relays, base, conn):
+def plot(data_asc, targets, sensors, relays, base, conn, file_name='./result.pdf'):
     ax = plt.figure(figsize=(20, 20)).add_subplot(projection='3d')
 
     def scatter(Points, c, marker, name, s):
@@ -72,8 +72,7 @@ def plot(data_asc, targets, sensors, relays, base, conn):
     ax.tick_params(axis='z', labelsize=20, pad=12)
     plt.legend(fontsize=20)
     # ax.axis('equal')
-    file = "./result.pdf"
-    if os.path.isfile(file):
-        os.remove(file)
-    plt.savefig(file)
+    if os.path.isfile(file_name):
+        os.remove(file_name)
+    plt.savefig(file_name)
     # plt.show()
