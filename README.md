@@ -4,7 +4,9 @@ This repository is the official implementation of the graduation thesis:
 
 Truong Vu, *SPARTA-GEMSTONE: A two-phase approach for efficient node placement in 3D wireless sensor networks under Q-Coverage and Q-Connectivity constraints*.
 
-[[Thesis](Media/thesis.pdf)][[Slides](Media/slides.pptx)]
+📚 *Accepted in* **JNCA - Journal of Network and Computer Applications** (Q1, Elsevier).
+
+📄 [Thesis PDF](Media/thesis.pdf) | 📊 [Presentation Slides](Media/slides.pptx)
 
 ![result](Media/result.png)
 <p align="center">Result of SPARTA-CC-GEMSTONE with the default setting.</p>
